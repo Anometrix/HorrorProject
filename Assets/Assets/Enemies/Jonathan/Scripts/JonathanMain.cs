@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class JonathanMain : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Jonathan likes bananas, just so you know. :) 
+    // Yes, I did decide that on the spot.
+
     void Start()
     {
-        
+        // Empty for now
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Empty for now
     }
 }
