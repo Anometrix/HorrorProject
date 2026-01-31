@@ -616,6 +616,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 625556152}
+  - component: {fileID: 625556153}
   m_Layer: 0
   m_Name: FakeJon
   m_TagString: Untagged
@@ -642,6 +643,19 @@ Transform:
   - {fileID: 674292299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &625556153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625556151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965fda841b3f10940b22119208fee1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JonathanMain
+  noiseSystemMan: {fileID: 2041160269}
 --- !u!1 &674292298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1042,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2041160268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041160270}
+  - component: {fileID: 2041160269}
+  m_Layer: 0
+  m_Name: NoiseSystemManagerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2041160269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041160268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1a73054bbcf854f9d6fb5a281b2143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoiseSystemManager
+  playerRun: {fileID: 11400000, guid: e362e6cf1aa5ea345ac7d51b153a1d31, type: 2}
+  playerStepOnSomething: {fileID: 11400000, guid: 66ce9e4b3e4df984ca0adcf05e2478d5, type: 2}
+  openCloseDoor: {fileID: 11400000, guid: a4097225139a87f46ad87fb8610f5a7f, type: 2}
+  crashSoft: {fileID: 11400000, guid: b370f49f7a39dd8449e39b9486787a5a, type: 2}
+  crashHard: {fileID: 11400000, guid: c80020d033027ce4b87324ba591ade50, type: 2}
+--- !u!4 &2041160270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041160268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.12472, y: -0.52, z: 2.51576}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1037,3 +1100,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 625556152}
   - {fileID: 1812101353}
+  - {fileID: 2041160270}

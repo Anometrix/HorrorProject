@@ -6,15 +6,28 @@ public class JonathanMain : MonoBehaviour
     // Yes, I did decide that on the spot.
 
     #region Variables
-    // Empty for now
+    public StateMachine stateMachine { get; private set; }
+    public JonathanMovement jonathanMovement { get; private set; }
+
+    [SerializeField] public NoiseSystemManager noiseSystemMan; 
+
+    public JonathanIdleState idleState;
+    public JonathanPatrolState patrolState;
+    public JonathanInvestigateState investigateState;
+    public JonathanRushState rushState;
     #endregion
     void Start()
     {
-        // Empty for now
+        stateMachine.InitializeStateMachine(idleState);
     }
 
     void Update()
     {
-        // Empty for now
+        stateMachine.currentState.LogicUpdate();
+    }
+
+    void FixedUpdate()
+    {
+        stateMachine.currentState.PhysicsUpdate();
     }
 }
