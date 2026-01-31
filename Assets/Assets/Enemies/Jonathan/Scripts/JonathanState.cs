@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class JonathanState : MonoBehaviour
+public class JonathanState : State
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    #region Variables -- Just one, really.
+    protected JonathanMain jonathanMain;
+    #endregion
+    public JonathanState(JonathanMain jonathanMain, StateMachine sm, Animator animationController, string animationName) : base(sm,animationController,animationName)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.jonathanMain = jonathanMain;
     }
 }
