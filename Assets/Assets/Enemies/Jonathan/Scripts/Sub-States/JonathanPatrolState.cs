@@ -9,5 +9,24 @@ public class JonathanPatrolState : JonathanState
 
     public JonathanPatrolState(JonathanMain jonathanMain, StateMachine sm, Animator animationController, string animationName) : base(jonathanMain, sm, animationController, animationName)
     {
+
     }
+    public override void TransitionChecks()
+    {
+        base.TransitionChecks();
+
+        // Check for noise within freshold
+    }
+    public override void Enter()
+    {
+        base.Enter();
+        jonathanMain.jonathanMovement.SetToWalk();
+        jonathanMain.jonathanMovement.Patrol();
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        jonathanMain.jonathanMovement.Patrol();
+    }
+
 }
