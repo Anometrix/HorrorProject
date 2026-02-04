@@ -36,7 +36,7 @@ public class State
         if (isExitingState) return; // Prevents any logic update if we are exiting the state
         TransitionChecks(); // Remember when calling to call this first -> base.LogicUpdate();
 
-        // And then do other things after
+        // And then do other things after - Not in here, in the override function
     }
     public virtual void PhysicsUpdate() // Called in the FixedUpdate method of the MonoBehaviour that uses this StateMachine
     {
