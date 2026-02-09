@@ -9,7 +9,6 @@ public class JonathanMain : MonoBehaviour
     [Header("Components")]
     public StateMachine stateMachine { get; private set; }
     public JonathanMovement jonathanMovement { get; private set; }
-    [SerializeField] public NoiseSystemManager noiseSystemMan;
     [SerializeField] private Animator animator;
 
     // States
@@ -17,7 +16,20 @@ public class JonathanMain : MonoBehaviour
     public JonathanPatrolState patrolState;
     public JonathanInvestigateState investigateState;
     public JonathanRushState rushState;
+
+    [Header("Regular Variables")]
+    [Range(0f, 25f)]
+    [Tooltip("The minimum sound required for Jonathan to investigate noise.")]
+    public float withinNoiseThreshold = 15f;
+    [Range(26f, 50f)]
+    [Tooltip("The minimum sound required for Jonathan to rush towards noise.")]
+    public float pastNoiseThreshold = 26f;
+    private float soundCheckTimer = 0f;
+    public HeardSound currentSoundHeard;
+    public HeardSound lockedSound;
     #endregion
+
+    #region Awake/Start
     private void Awake()
     {
         stateMachine = new StateMachine();
@@ -33,14 +45,27 @@ public class JonathanMain : MonoBehaviour
     {
         stateMachine.InitializeStateMachine(patrolState);
     }
+    #endregion
 
+    #region Update/FixedUpdate
     void Update()
     {
         stateMachine.currentState.LogicUpdate();
+
+        if (soundCheckTimer <= 0f)
+        {
+            soundCheckTimer = 0.5f; // Check for sounds every 0.5 seconds
+            currentSoundHeard = NoiseSystemManager.manInstance.GetLoudestSound(transform.position); // Check for sounds and react accordingly in the current state
+        }
+        else
+        {
+            soundCheckTimer -= Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
     {
         stateMachine.currentState.PhysicsUpdate();
     }
+    #endregion
 }

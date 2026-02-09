@@ -913,8 +913,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965fda841b3f10940b22119208fee1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JonathanMain
-  noiseSystemMan: {fileID: 2041160269}
   animator: {fileID: 625556156}
+  withinNoiseThreshold: 15
+  pastNoiseThreshold: 26
 --- !u!114 &625556154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1844,11 +1845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1a73054bbcf854f9d6fb5a281b2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystemManager
-  playerRun: {fileID: 11400000, guid: e362e6cf1aa5ea345ac7d51b153a1d31, type: 2}
-  playerStepOnSomething: {fileID: 11400000, guid: 66ce9e4b3e4df984ca0adcf05e2478d5, type: 2}
-  openCloseDoor: {fileID: 11400000, guid: a4097225139a87f46ad87fb8610f5a7f, type: 2}
-  crashSoft: {fileID: 11400000, guid: b370f49f7a39dd8449e39b9486787a5a, type: 2}
-  crashHard: {fileID: 11400000, guid: c80020d033027ce4b87324ba591ade50, type: 2}
 --- !u!4 &2041160270
 Transform:
   m_ObjectHideFlags: 0

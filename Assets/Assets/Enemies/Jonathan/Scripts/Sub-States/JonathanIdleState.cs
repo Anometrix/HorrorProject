@@ -11,4 +11,27 @@ public class JonathanIdleState : JonathanState
     public JonathanIdleState(JonathanMain jonathanMain, StateMachine sm, Animator animationController, string animationName) : base(jonathanMain, sm, animationController, animationName)
     {
     }
+    public override void TransitionChecks()
+    {
+        base.TransitionChecks();
+
+        #region Safety Checks
+        if (jonathanMain.lockedSound.heardIntensity <= 0f) // Safety check to prevent bugs --------- BAD IN HERE
+        {
+            jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
+            return;
+        }
+        #endregion
+
+        // Gotta add conditions to switch to patrol, investigate, or rush
+    }
+    public override void Enter()
+    {
+        base.Enter();
+        jonathanMain.jonathanMovement.StopMovement();
+    }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+    }
 }
