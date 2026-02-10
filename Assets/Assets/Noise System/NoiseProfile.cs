@@ -11,7 +11,7 @@ public enum SoundType
 [CreateAssetMenu(fileName = "NewSoundEvent", menuName = "Scriptable Objects/Audio/SoundEvent", order = 1)]
 public class NoiseProfile : ScriptableObject
 {
-    [Range(1f, 5f)]
+    [Range(1f, 20f)]
     [Tooltip("Base loudness of sound to multiply by.")]
     public float intensity;
 
