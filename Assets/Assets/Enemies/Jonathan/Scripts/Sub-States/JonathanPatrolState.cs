@@ -16,10 +16,23 @@ public class JonathanPatrolState : JonathanState
         base.TransitionChecks();
 
         // Check for noise within freshold
+        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+        {
+            jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
+            jonathanMain.stateMachine.ChangeState(jonathanMain.rushState);
+            return;
+        }
+        else if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
+        {
+            jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
+            jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
+            return;
+        }
     }
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Entered Patrol State");
         jonathanMain.jonathanMovement.SetToWalk();
         jonathanMain.jonathanMovement.Patrol();
     }
@@ -28,5 +41,4 @@ public class JonathanPatrolState : JonathanState
         base.LogicUpdate();
         jonathanMain.jonathanMovement.Patrol();
     }
-
 }

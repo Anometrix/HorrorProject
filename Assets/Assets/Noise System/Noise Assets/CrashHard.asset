@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd22a7a41a43de4987f368bee9fe33b, type: 3}
   m_Name: CrashHard
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystem
-  intensity: 0
-  radius: 0
-  soundType: 0
+  intensity: 20
+  radius: 53.8
+  decayTime: 4.07
+  soundType: 3
