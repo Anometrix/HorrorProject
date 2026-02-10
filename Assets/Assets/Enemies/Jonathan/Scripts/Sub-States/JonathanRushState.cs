@@ -14,18 +14,34 @@ public class JonathanRushState : JonathanState
         base.TransitionChecks();
 
         #region Safety Checks
-        if (jonathanMain.lockedSound.heardIntensity <= 0f) // Safety check to prevent bugs --------- BAD IN HERE
+        if (!jonathanMain.lockedSound.isValid) // Safety check to prevent bugs
         {
-            jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
+            jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
             return;
         }
         #endregion
-        
-        // Gotta add conditions to switch to idle or investigate AFTER reaching noise position
+
+        // Check for new noise within and above freshold and update target position if necessary
+        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+        {
+            if (jonathanMain.currentSoundHeard.heardIntensity > jonathanMain.lockedSound.heardIntensity + 2f)
+            {
+                jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
+            }
+        }
+
+        // Check for if target position has been reached
+        float distanceToNoise = Vector3.Distance(jonathanMain.transform.position, jonathanMain.lockedSound.position);
+        if (distanceToNoise <= 1f)
+        {
+            jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
+            return;
+        }
     }
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Entered Rush State");
         jonathanMain.jonathanMovement.SetToRun();
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);
     }

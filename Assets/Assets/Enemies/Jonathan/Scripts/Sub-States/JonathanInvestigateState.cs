@@ -16,7 +16,7 @@ public class JonathanInvestigateState : JonathanState
         base.TransitionChecks();
 
         #region Safety Checks
-        if (jonathanMain.lockedSound.heardIntensity <= 0f) // Safety check to prevent bugs
+        if (!jonathanMain.lockedSound.isValid) // Safety check to prevent bugs
         {
             jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
             return;
@@ -25,7 +25,7 @@ public class JonathanInvestigateState : JonathanState
 
         #region Change State Checks
         
-        // Check for noise within freshold
+        // Check for noise past freshold
         if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
         {
             jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
@@ -54,6 +54,7 @@ public class JonathanInvestigateState : JonathanState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Entered Investigate State");
         jonathanMain.jonathanMovement.SetToWalk();
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);
     }

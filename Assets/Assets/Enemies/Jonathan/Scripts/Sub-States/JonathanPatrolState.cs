@@ -32,6 +32,7 @@ public class JonathanPatrolState : JonathanState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Entered Patrol State");
         jonathanMain.jonathanMovement.SetToWalk();
         jonathanMain.jonathanMovement.Patrol();
     }

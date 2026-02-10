@@ -8,6 +8,9 @@ public class JonathanIdleState : JonathanState
     // States Rush and Investigate switch to this state when they finish their actions.
     // Patrol switches to this state at specified patrol points.
 
+    #region Variables
+    float timer;
+    #endregion
     public JonathanIdleState(JonathanMain jonathanMain, StateMachine sm, Animator animationController, string animationName) : base(jonathanMain, sm, animationController, animationName)
     {
     }
@@ -15,23 +18,38 @@ public class JonathanIdleState : JonathanState
     {
         base.TransitionChecks();
 
-        #region Safety Checks
-        if (jonathanMain.lockedSound.heardIntensity <= 0f) // Safety check to prevent bugs --------- BAD IN HERE
+        if (timer <= 0f)
         {
-            jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
-            return;
+            // Check for noise within freshold
+            if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+            {
+                jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
+                jonathanMain.stateMachine.ChangeState(jonathanMain.rushState);
+                return;
+            }
+            else if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
+            {
+                jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
+                jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
+                return;
+            }
+            else
+            {
+                jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
+                return;
+            }
         }
-        #endregion
-
-        // Gotta add conditions to switch to patrol, investigate, or rush
     }
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Entered Idle State");
+        timer = 2f;
         jonathanMain.jonathanMovement.StopMovement();
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        timer -= Time.deltaTime;
     }
 }

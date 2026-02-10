@@ -28,7 +28,7 @@ public class NoiseSystemManager : MonoBehaviour
     }
     public void RemoveOldSounds() // Removes old noise events once they are useless
     {
-        for (int i = noiseEvents.Count - 1; i >= 0; i++)
+        for (int i = noiseEvents.Count - 1; i >= 0; i--)
         {
             float age = Time.time - noiseEvents[i].timeCreated; // Calculate how long the sound event has been active
 
@@ -73,6 +73,7 @@ public class NoiseSystemManager : MonoBehaviour
                 loudestSoundPos = noiseEvents[i].position;
             }
         }
+        Debug.Log("Loudest Sound Intensity: " + maxIntensity);
         return new HeardSound(loudestSoundPos, maxIntensity);
     }
     #endregion
