@@ -5,6 +5,7 @@ public class TestNoise : MonoBehaviour
     float timer;
     [SerializeField] float maxtimerlength;
     [SerializeField] NoiseProfile noiseprofile;
+    [SerializeField] bool showGizmo = true;
 
     private void Awake()
     {
@@ -23,6 +24,14 @@ public class TestNoise : MonoBehaviour
         else
         {
             timer -= Time.deltaTime;
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        if (noiseprofile != null && showGizmo)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, noiseprofile.radius);
         }
     }
 }

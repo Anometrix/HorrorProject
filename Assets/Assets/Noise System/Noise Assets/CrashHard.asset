@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CrashHard
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystem
   intensity: 20
-  radius: 53.8
+  radius: 10
   decayTime: 4.07
   soundType: 3
