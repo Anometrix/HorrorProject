@@ -15,11 +15,11 @@ public class NoiseProfile : ScriptableObject
     [Tooltip("Base loudness of sound to multiply by.")]
     public float intensity;
 
-    [Range(1f, 100f)]
+    [Range(10f, 60f)]
     [Tooltip("The distance the sound can be heard from.")]
     public float radius;
 
-    [Range(0f, 8f)]
+    [Range(0f, 5f)]
     [Tooltip("How long the sound should last in seconds, which determines how long it can be heard for.")]
     public float decayTime;
 

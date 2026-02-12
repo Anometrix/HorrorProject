@@ -34,6 +34,7 @@ public class JonathanRushState : JonathanState
         float distanceToNoise = Vector3.Distance(jonathanMain.transform.position, jonathanMain.lockedSound.position);
         if (distanceToNoise <= 1f)
         {
+            jonathanMain.lockedSound = default; // Clear locked sound to prevent bugs
             jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
             return;
         }
