@@ -26,16 +26,16 @@ public class PlayerMotor : MonoBehaviour
             p *= p; // Ease in and out the crouch transition
             if (crouching)
             {
-                controller.height = Mathf.Lerp(controller.height, 1, p);
+                controller.height = Mathf.Lerp(controller.height, 1, p); // Half the height of the player when crouching
             }
             else
             {
-                controller.height = Mathf.Lerp(controller.height, 2, p);
+                controller.height = Mathf.Lerp(controller.height, 2, p); // Normal height of the player when not crouching
             }
 
             if (p > 1)
             {
-                lerpCrouch = false;
+                lerpCrouch = false; // Stop lerping once the transition is complete
                 crouchTimer = 0;
             }
         }
@@ -45,7 +45,7 @@ public class PlayerMotor : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);;
+        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // Move the player based on input and speed
     }
     public void Crouch()
     {
