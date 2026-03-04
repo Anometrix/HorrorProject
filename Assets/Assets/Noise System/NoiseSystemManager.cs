@@ -73,7 +73,7 @@ public class NoiseSystemManager : MonoBehaviour
                 loudestSoundPos = noiseEvents[i].position;
             }
         }
-        //Debug.Log("Loudest Sound Intensity: " + maxIntensity);
+        Debug.Log("Loudest Sound Intensity: " + maxIntensity);
         return new HeardSound(loudestSoundPos, maxIntensity);
     }
     #endregion
