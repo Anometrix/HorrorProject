@@ -10,7 +10,7 @@ public class GeneratorPower : MonoBehaviour, IIenteractable
 
     void TurnPowerOn()
     {
-        GameManager.Instance.isPowerOn = true;
+        GameManager.Instance.PowerEnabler();
     }
     public void Interact()
     {

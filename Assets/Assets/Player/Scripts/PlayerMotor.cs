@@ -46,6 +46,7 @@ public class PlayerMotor : MonoBehaviour
         moveDirection.x = input.x;
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // Move the player based on input and speed
+        controller.Move(new Vector3(0, -1, 0)); // Apply gravity to keep the player grounded
     }
     public void Crouch()
     {
@@ -62,7 +63,7 @@ public class PlayerMotor : MonoBehaviour
         }
         else
         {
-            speed = 5;
+            speed = 4;
         }
     }
 }
