@@ -27,7 +27,7 @@ public class JonathanIdleState : JonathanState
                 jonathanMain.stateMachine.ChangeState(jonathanMain.rushState);
                 return;
             }
-            else if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
+            else if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold && jonathanMain.currentSoundHeard.heardIntensity < jonathanMain.pastNoiseThreshold)
             {
                 jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
                 jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
@@ -44,7 +44,7 @@ public class JonathanIdleState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Idle State");
-        timer = 2f;
+        timer = 0.75f;
         jonathanMain.jonathanMovement.StopMovement();
     }
     public override void LogicUpdate()

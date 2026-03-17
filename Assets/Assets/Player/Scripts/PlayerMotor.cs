@@ -11,6 +11,9 @@ public class PlayerMotor : MonoBehaviour
     private float crouchTimer = 1;
     private bool lerpCrouch = false;
     private bool sprinting = false;
+    [Header("Noise System")]
+    [SerializeField] private NoiseProfile runningNoise;
+    private float canPlayNoise = 1;
     #endregion
 
     private void Start()
@@ -47,6 +50,18 @@ public class PlayerMotor : MonoBehaviour
         moveDirection.z = input.y;
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // Move the player based on input and speed
         controller.Move(new Vector3(0, -1, 0)); // Apply gravity to keep the player grounded
+        if (sprinting)
+        {
+            if (canPlayNoise <= 0)
+            {
+                NoiseSystemManager.manInstance.EmitSound(runningNoise, transform.position); // Emit noise when sprinting
+                canPlayNoise = 0.5f;
+            }
+            else
+            {
+                canPlayNoise -= Time.deltaTime;
+            }
+        }
     }
     public void Crouch()
     {

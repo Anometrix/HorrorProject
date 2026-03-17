@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
   speed: 5
+  runningNoise: {fileID: 11400000, guid: e362e6cf1aa5ea345ac7d51b153a1d31, type: 2}
 --- !u!114 &7608587059627324575
 MonoBehaviour:
   m_ObjectHideFlags: 0

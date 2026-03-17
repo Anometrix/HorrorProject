@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OpenOrCloseDoor
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystem
   intensity: 1
-  radius: 1
+  radius: 10
   decayTime: 0
   soundType: 0
