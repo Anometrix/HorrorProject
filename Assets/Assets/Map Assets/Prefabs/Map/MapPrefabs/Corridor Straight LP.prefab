@@ -43,7 +43,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.3773585, g: 0.14417943, b: 0.14417943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 71.43519
@@ -170,7 +170,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.3773585, g: 0.14417943, b: 0.14417943, a: 1}
+  m_Color: {r: 0.46226418, g: 0.04579032, b: 0.04579032, a: 1}
   m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 71.43519
@@ -344,7 +344,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4757044493785045925}
-  m_Mesh: {fileID: -160294324586650528, guid: 80eaa355cefe234418ac9dbea7b54cfd, type: 3}
+  m_Mesh: {fileID: 5058088106542604089, guid: e6cc90e1ecee6d841bfbde945e92798a, type: 3}
 --- !u!64 &7047646031727607132
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -160294324586650528, guid: 80eaa355cefe234418ac9dbea7b54cfd, type: 3}
+  m_Mesh: {fileID: 5058088106542604089, guid: e6cc90e1ecee6d841bfbde945e92798a, type: 3}
 --- !u!1 &6427584118501256173
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 2
-  m_Color: {r: 0.3773585, g: 0.14417943, b: 0.14417943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 20
   m_Range: 10
   m_SpotAngle: 71.43519
@@ -571,7 +571,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969256591106725003}
-  m_Mesh: {fileID: 4632828384592859176, guid: 80eaa355cefe234418ac9dbea7b54cfd, type: 3}
+  m_Mesh: {fileID: -7491168581946997818, guid: e6cc90e1ecee6d841bfbde945e92798a, type: 3}
 --- !u!23 &7204781693371329670
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -642,4 +642,4 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4632828384592859176, guid: 80eaa355cefe234418ac9dbea7b54cfd, type: 3}
+  m_Mesh: {fileID: -7491168581946997818, guid: e6cc90e1ecee6d841bfbde945e92798a, type: 3}
