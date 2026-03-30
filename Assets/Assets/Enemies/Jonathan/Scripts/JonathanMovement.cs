@@ -30,6 +30,7 @@ public class JonathanMovement : MonoBehaviour
     #region Investigate/Rush Movement Functions
     public void MoveTowardsTarget(Vector3 targetPosition) // Used for Investigate and Rush states
     {
+        agent.isStopped = false;
         agent.SetDestination(targetPosition);
     }
     #endregion

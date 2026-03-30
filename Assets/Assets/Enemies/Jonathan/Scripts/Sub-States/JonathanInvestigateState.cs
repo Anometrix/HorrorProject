@@ -7,7 +7,7 @@ public class JonathanInvestigateState : JonathanState
     // If no noise is heard within a certain time after it reaches noise position, returns to patrol.
     // If a new noise is heard while investigating, updates target position to new noise position.
     // If Jonathan hears a sound past noise freshold while investigating, switches to rush state to noise position.
-
+    private float timer;
     public JonathanInvestigateState(JonathanMain jonathanMain, StateMachine sm, Animator animationController, string animationName) : base(jonathanMain, sm, animationController, animationName)
     {
     }
@@ -18,6 +18,12 @@ public class JonathanInvestigateState : JonathanState
         #region Safety Checks
         if (!jonathanMain.lockedSound.isValid) // Safety check to prevent bugs
         {
+            jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
+            return;
+        }
+        if (timer <= 0f) // If timer runs out, return to patrol state
+        {
+            jonathanMain.lockedSound = default; // Clear locked sound to prevent bugs
             jonathanMain.stateMachine.ChangeState(jonathanMain.patrolState);
             return;
         }
@@ -36,7 +42,7 @@ public class JonathanInvestigateState : JonathanState
         // Check for new noise within freshold and update target position if necessary
         if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
         {
-            if (jonathanMain.currentSoundHeard.heardIntensity > jonathanMain.lockedSound.heardIntensity + 2f)
+            if (jonathanMain.currentSoundHeard.heardIntensity > jonathanMain.lockedSound.heardIntensity + 1f)
             {
                 jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
             }
@@ -56,12 +62,14 @@ public class JonathanInvestigateState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Investigate State");
+        timer = 5f;
         jonathanMain.jonathanMovement.SetToWalk();
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        timer -= Time.deltaTime;
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);
     }
 }
