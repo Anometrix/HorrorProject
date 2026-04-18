@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ca92f6f919db45b4bf88b90a4e289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
-  speed: 5
+  speed: 4
   runningNoise: {fileID: 11400000, guid: e362e6cf1aa5ea345ac7d51b153a1d31, type: 2}
 --- !u!114 &7608587059627324575
 MonoBehaviour:
