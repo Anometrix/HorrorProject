@@ -11,7 +11,8 @@ public class MenuStuffs : MonoBehaviour
     [Header("Credit Menu Options")]
     [SerializeField] private GameObject creditDevs;
     [SerializeField] private GameObject creditOther;
-
+    [Header("Other")]
+    [SerializeField] private GameObject otherApp;
 
     #region Open/Close Apps
     public void OpenCloseLevelSelect()
