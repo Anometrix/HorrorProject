@@ -11,7 +11,12 @@ public class GameManager : MonoBehaviour
     public bool greenKeyCardCollected { get; private set; }
     public bool redKeyCardCollected { get; private set; }
     public bool MasterKeyCardCollected { get; private set; }
+    [Header("Task Objectives")]
+    [SerializeField] private GameObject task1;
+    [SerializeField] private GameObject task2;
+    [SerializeField] private GameObject task3;
     #endregion
+    #region Awake, Start, and Update
     void Awake()
     {
         if (Instance == null)
@@ -33,6 +38,20 @@ public class GameManager : MonoBehaviour
 
         isPowerOn = false; // Initialize power state to off at the start of the game
     }
+    private void Update()
+    {
+        if (greenKeyCardCollected && redKeyCardCollected && !MasterKeyCardCollected)
+        {
+            task1.SetActive(false);
+            task2.SetActive(true);
+        }
+        else if (MasterKeyCardCollected)
+        {
+            task2.SetActive(false);
+            task3.SetActive(true);
+        }
+    }
+    #endregion
     public bool PowerEnabler() 
     {
         isPowerOn = true;
