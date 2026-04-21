@@ -10,6 +10,6 @@ public struct HeardSound
     {
         this.heardIntensity = heardIntensity;
         this.position = position;
-        isValid = heardIntensity > 4f; // A sound is considered valid if its intensity is greater than 0
+        isValid = heardIntensity > 5f; // A sound is considered valid if its intensity is greater than 0
     }
 }
