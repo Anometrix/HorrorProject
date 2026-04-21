@@ -13,6 +13,7 @@ public class PlayerMotor : MonoBehaviour
     private bool sprinting = false;
     [Header("Noise System")]
     [SerializeField] private NoiseProfile runningNoise;
+    [SerializeField] private NoiseProfile walkingNoise;
     private float canPlayNoise = 1;
     #endregion
 
@@ -51,7 +52,20 @@ public class PlayerMotor : MonoBehaviour
 
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // Move the player based on input and speed
         controller.Move(new Vector3(0, -1, 0)); // Apply gravity to keep the player grounded
-        if (sprinting)
+        
+        if (!sprinting)
+        {
+            if (canPlayNoise <= 0)
+            {
+                NoiseSystemManager.manInstance.EmitSound(walkingNoise, transform.position); // Emit noise when walking
+                canPlayNoise = 0.5f;
+            }
+            else
+            {
+                canPlayNoise -= Time.deltaTime;
+            }
+        }
+        else if (sprinting)
         {
             if (canPlayNoise <= 0)
             {
@@ -75,11 +89,11 @@ public class PlayerMotor : MonoBehaviour
         sprinting = !sprinting;
         if (sprinting)
         {
-            speed = 8;
+            speed = 6;
         }
         else
         {
-            speed = 4;
+            speed = 3;
         }
     }
 }

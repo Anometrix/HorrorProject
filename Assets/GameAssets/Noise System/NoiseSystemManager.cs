@@ -61,6 +61,7 @@ public class NoiseSystemManager : MonoBehaviour
     {
         Vector3 loudestSoundPos = Vector3.zero;
         float maxIntensity = 0f;
+        bool foundsound = false;
 
         for (int i = 0; noiseEvents.Count > i; i++)
         {
@@ -71,7 +72,13 @@ public class NoiseSystemManager : MonoBehaviour
             {
                 maxIntensity = intensity;
                 loudestSoundPos = noiseEvents[i].position;
+                foundsound = true;
             }
+        }
+
+        if (!foundsound)
+        {
+            return default; // If no sound is found, return a default HeardSound struct with isValid set to false
         }
         //Debug.Log("Loudest Sound Intensity: " + maxIntensity);
         return new HeardSound(loudestSoundPos, maxIntensity);

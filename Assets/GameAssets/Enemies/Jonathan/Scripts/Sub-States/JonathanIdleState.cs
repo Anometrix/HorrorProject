@@ -21,13 +21,13 @@ public class JonathanIdleState : JonathanState
         if (timer <= 0f)
         {
             // Check for noise within freshold
-            if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+            if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
             {
                 jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
                 jonathanMain.stateMachine.ChangeState(jonathanMain.rushState);
                 return;
             }
-            else if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold && jonathanMain.currentSoundHeard.heardIntensity < jonathanMain.pastNoiseThreshold)
+            else if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold && jonathanMain.currentSoundHeard.heardIntensity < jonathanMain.pastNoiseThreshold)
             {
                 jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
                 jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);
@@ -44,7 +44,7 @@ public class JonathanIdleState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Idle State");
-        timer = 0.75f;
+        timer = 0.25f;
         jonathanMain.jonathanMovement.StopMovement();
     }
     public override void LogicUpdate()

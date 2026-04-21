@@ -16,13 +16,13 @@ public class JonathanPatrolState : JonathanState
         base.TransitionChecks();
 
         // Check for noise within freshold
-        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+        if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
         {
             jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
             jonathanMain.stateMachine.ChangeState(jonathanMain.rushState);
             return;
         }
-        else if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
+        else if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
         {
             jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
             jonathanMain.stateMachine.ChangeState(jonathanMain.investigateState);

@@ -52,6 +52,7 @@ public class JonathanMain : MonoBehaviour
     {
         stateMachine.currentState.LogicUpdate();
 
+        Debug.Log($"State: {stateMachine.currentState.GetType().Name} | Intensity: {currentSoundHeard.heardIntensity}");
         if (soundCheckTimer <= 0f)
         {
             soundCheckTimer = 0.5f; // Check for sounds every 0.5 seconds

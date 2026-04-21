@@ -22,7 +22,7 @@ public class JonathanRushState : JonathanState
         #endregion
 
         // Check for new noise within and above freshold and update target position if necessary
-        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+        if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
         {
             if (jonathanMain.currentSoundHeard.heardIntensity > jonathanMain.lockedSound.heardIntensity + 2f)
             {

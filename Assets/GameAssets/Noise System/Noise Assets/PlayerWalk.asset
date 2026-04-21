@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bd22a7a41a43de4987f368bee9fe33b, type: 3}
-  m_Name: PlayerRun
+  m_Name: PlayerWalk
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystem
-  intensity: 20
-  radius: 20
-  decayTime: 1.25
+  intensity: 10
+  radius: 15
+  decayTime: 0.5
   soundType: 0

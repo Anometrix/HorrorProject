@@ -32,7 +32,7 @@ public class JonathanInvestigateState : JonathanState
         #region Change State Checks
         
         // Check for noise past freshold
-        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+        if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
         {
             jonathanMain.lockedSound = jonathanMain.currentSoundHeard;
             jonathanMain.stateMachine.ChangeState(jonathanMain.rushState);
@@ -40,7 +40,7 @@ public class JonathanInvestigateState : JonathanState
         }
 
         // Check for new noise within freshold and update target position if necessary
-        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
+        if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.withinNoiseThreshold)
         {
             if (jonathanMain.currentSoundHeard.heardIntensity > jonathanMain.lockedSound.heardIntensity + 1f)
             {
