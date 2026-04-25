@@ -18,10 +18,10 @@ public class JonathanMain : MonoBehaviour
     public JonathanRushState rushState;
 
     [Header("Regular Variables")]
-    [Range(0f, 25f)]
+    [Range(4f, 25f)]
     [Tooltip("The minimum sound required for Jonathan to investigate noise.")]
     public float withinNoiseThreshold = 15f;
-    [Range(26f, 50f)]
+    [Range(16f, 30f)]
     [Tooltip("The minimum sound required for Jonathan to rush towards noise.")]
     public float pastNoiseThreshold = 26f;
     private float soundCheckTimer = 0f;

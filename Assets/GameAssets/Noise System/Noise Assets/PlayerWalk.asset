@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerWalk
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystem
   intensity: 10
-  radius: 15
+  radius: 10
   decayTime: 0.5
   soundType: 0

@@ -47,30 +47,26 @@ public class PlayerMotor : MonoBehaviour
     public void ProcessMove(Vector2 input)
     {
         Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
+        moveDirection.x = input.normalized.x;
+        moveDirection.z = input.normalized.y;
+        moveDirection.y = (-1); // Apply a constant downward force to keep the player grounded
 
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime); // Move the player based on input and speed
-        controller.Move(new Vector3(0, -1, 0)); // Apply gravity to keep the player grounded
-        
-        if (!sprinting)
+
+        if (input.magnitude > 0.1)
         {
             if (canPlayNoise <= 0)
             {
-                NoiseSystemManager.manInstance.EmitSound(walkingNoise, transform.position); // Emit noise when walking
-                canPlayNoise = 0.5f;
-            }
-            else
-            {
-                canPlayNoise -= Time.deltaTime;
-            }
-        }
-        else if (sprinting)
-        {
-            if (canPlayNoise <= 0)
-            {
-                NoiseSystemManager.manInstance.EmitSound(runningNoise, transform.position); // Emit noise when sprinting
-                canPlayNoise = 0.5f;
+                if (!sprinting)
+                {
+                    NoiseSystemManager.manInstance.EmitSound(walkingNoise, transform.position); // Emit noise when walking
+                    canPlayNoise = 0.5f;
+                }
+                else
+                {
+                    NoiseSystemManager.manInstance.EmitSound(runningNoise, transform.position); // Emit noise when sprinting
+                    canPlayNoise = 0.5f;
+                }
             }
             else
             {

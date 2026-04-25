@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject task1;
     [SerializeField] private GameObject task2;
     [SerializeField] private GameObject task3;
+    [SerializeField] private GameObject genEnabled;
+    [SerializeField] private GameObject genDisabled;
     #endregion
     #region Awake, Start, and Update
     void Awake()
@@ -49,6 +51,17 @@ public class GameManager : MonoBehaviour
         {
             task2.SetActive(false);
             task3.SetActive(true);
+        }
+
+        if (isPowerOn)
+        {
+            genEnabled.SetActive(true);
+            genDisabled.SetActive(false);
+        }
+         else
+        {
+            genEnabled.SetActive(false);
+            genDisabled.SetActive(true);
         }
     }
     #endregion
