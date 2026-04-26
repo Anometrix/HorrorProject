@@ -69,4 +69,12 @@ public class JonathanMain : MonoBehaviour
         stateMachine.currentState.PhysicsUpdate();
     }
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(other.gameObject); // Destroy the player if Jonathan catches them
+        }
+    }
 }

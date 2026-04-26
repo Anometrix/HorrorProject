@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8286532403475740484}
   - component: {fileID: 7608587059627324575}
   - component: {fileID: 6720586212091676750}
+  - component: {fileID: 1382128681600163960}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -145,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926ca92f6f919db45b4bf88b90a4e289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
-  speed: 4
+  speed: 3.5
   runningNoise: {fileID: 11400000, guid: e362e6cf1aa5ea345ac7d51b153a1d31, type: 2}
+  walkingNoise: {fileID: 11400000, guid: fa927810f39ed4040b64ea67eb08708f, type: 2}
 --- !u!114 &7608587059627324575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +179,27 @@ MonoBehaviour:
   playerCamera: {fileID: 725072101708398743}
   interactionText: {fileID: 0}
   interactionDistance: 3
+--- !u!65 &1382128681600163960
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3936840718435597820}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 2, z: 1.0000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6705213396280252373
 GameObject:
   m_ObjectHideFlags: 0

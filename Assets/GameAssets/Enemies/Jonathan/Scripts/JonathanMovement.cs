@@ -17,8 +17,8 @@ public class JonathanMovement : MonoBehaviour
     private bool isWaiting;
 
     // Constants
-    private const float walkSpeed = 5f; // Walk Speed here - adjust as needed
-    private const float runSpeed = 10f; // Run Speed here - adjust as needed
+    private const float walkSpeed = 7f; // Walk Speed here - adjust as needed
+    private const float runSpeed = 20f; // Run Speed here - adjust as needed
     #endregion
 
     private void Awake()

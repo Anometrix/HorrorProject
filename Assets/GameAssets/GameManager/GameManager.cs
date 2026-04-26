@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {

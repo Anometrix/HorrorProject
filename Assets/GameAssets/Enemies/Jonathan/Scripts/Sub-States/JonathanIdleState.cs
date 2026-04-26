@@ -44,7 +44,7 @@ public class JonathanIdleState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Idle State");
-        timer = 0.25f;
+        timer = 0.1f;
         jonathanMain.jonathanMovement.StopMovement();
     }
     public override void LogicUpdate()
