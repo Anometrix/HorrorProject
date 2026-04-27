@@ -74,7 +74,7 @@ public class JonathanMain : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(other.gameObject); // Destroy the player if Jonathan catches them
+            GameManager.Instance.PlayerDeath();
         }
     }
 }

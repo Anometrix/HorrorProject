@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,16 +9,26 @@ public class GameManager : MonoBehaviour
 
     public bool isPowerOn { get; private set;  } // Power state variable
     private int FPS = 60;
+    public bool isDead { get; private set; }
 
     public bool greenKeyCardCollected { get; private set; }
     public bool redKeyCardCollected { get; private set; }
     public bool MasterKeyCardCollected { get; private set; }
+
     [Header("Task Objectives")]
     [SerializeField] private GameObject task1;
     [SerializeField] private GameObject task2;
     [SerializeField] private GameObject task3;
     [SerializeField] private GameObject genEnabled;
     [SerializeField] private GameObject genDisabled;
+    [SerializeField] private GameObject deathScreen;
+    [Header("Audio")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioClip musicClip;
+    [SerializeField] private AudioSource deathSource;
+    [SerializeField] private AudioClip deathClip;
+    [SerializeField] private AudioSource screamSource;
+    [SerializeField] private AudioClip screamClip;
     #endregion
     #region Awake, Start, and Update
     void Awake()
@@ -38,6 +49,15 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = FPS;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        musicSource.clip = musicClip;
+        deathSource.clip = deathClip;
+        screamSource.clip = screamClip;
+
+        screamSource.ignoreListenerPause = true;
+        deathSource.ignoreListenerPause = true;
+
+        musicSource.Play();
 
         isPowerOn = false; // Initialize power state to off at the start of the game
     }
@@ -95,5 +115,27 @@ public class GameManager : MonoBehaviour
             "Master" => MasterKeyCardCollected,
             _ => false,
         };
+    }
+    public void PlayerDeath()
+    {
+        if (isDead) return; // Prevent multiple death triggers
+        isDead = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        deathScreen.SetActive(true);
+
+        musicSource.Stop();
+        screamSource.Play();
+        deathSource.Play();
+
+        Time.timeScale = 0f; // Pause the game when the player dies
+
+        StartCoroutine(StopScreamSound()); // Start a coroutine to stop the scream sound after it finishes playing
+    }
+    public IEnumerator StopScreamSound()
+    {
+        yield return new WaitForSecondsRealtime(screamClip.length + 1f); // Wait for the scream sound to finish playing
+        screamSource.Stop(); // Stop the scream sound
     }
 }

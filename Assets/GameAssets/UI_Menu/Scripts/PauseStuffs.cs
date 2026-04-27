@@ -9,12 +9,12 @@ public class PauseStuffs : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.isDead)
         {
             Time.timeScale = 0f; // Pause the game by setting time scale to 0
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            pauseMenu.gameObject.SetActive(true); // Show the pause menu
+            pauseMenu.SetActive(true); // Show the pause menu
         }
     }
     public void ResumeGame()
@@ -22,7 +22,7 @@ public class PauseStuffs : MonoBehaviour
         Time.timeScale = 1f; // Resume the game by setting time scale back to normal
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        pauseMenu.gameObject.SetActive(false); // Hide the pause menu
+        pauseMenu.SetActive(false); // Hide the pause menu
     }
     public void RestartGame()
     {
