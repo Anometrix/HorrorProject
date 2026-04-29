@@ -33,6 +33,10 @@ public class JonathanPatrolState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Patrol State");
+
+        jonathanMain.animator.SetBool("Moving", true);
+        jonathanMain.animator.SetBool("Running", false);
+
         jonathanMain.jonathanMovement.SetToWalk();
         jonathanMain.jonathanMovement.Patrol();
     }

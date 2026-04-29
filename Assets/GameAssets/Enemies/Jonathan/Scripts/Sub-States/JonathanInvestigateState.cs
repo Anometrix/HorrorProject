@@ -62,6 +62,10 @@ public class JonathanInvestigateState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Investigate State");
+
+        jonathanMain.animator.SetBool("Moving", true);
+        jonathanMain.animator.SetBool("Running", false);
+
         timer = 5f;
         jonathanMain.jonathanMovement.SetToWalk();
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);

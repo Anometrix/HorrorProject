@@ -9,7 +9,7 @@ public class JonathanMain : MonoBehaviour
     [Header("Components")]
     public StateMachine stateMachine { get; private set; }
     public JonathanMovement jonathanMovement { get; private set; }
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     // States
     public JonathanIdleState idleState;
@@ -34,7 +34,6 @@ public class JonathanMain : MonoBehaviour
     {
         stateMachine = new StateMachine();
         jonathanMovement = GetComponent<JonathanMovement>();
-        animator = GetComponent<Animator>();
 
         idleState = new JonathanIdleState(this, stateMachine, animator, "Idle");
         patrolState = new JonathanPatrolState(this, stateMachine, animator, "Walk");
@@ -44,6 +43,9 @@ public class JonathanMain : MonoBehaviour
     void Start()
     {
         stateMachine.InitializeStateMachine(patrolState);
+
+        animator.SetBool("Moving", true);
+        animator.SetBool("Running", false);
     }
     #endregion
 

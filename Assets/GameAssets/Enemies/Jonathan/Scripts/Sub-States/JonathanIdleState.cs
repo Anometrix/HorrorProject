@@ -44,6 +44,10 @@ public class JonathanIdleState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Idle State");
+
+        jonathanMain.animator.SetBool("Moving", false);
+        jonathanMain.animator.SetBool("Running", false);
+
         timer = 0.1f;
         jonathanMain.jonathanMovement.StopMovement();
     }

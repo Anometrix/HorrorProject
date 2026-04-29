@@ -43,6 +43,10 @@ public class JonathanRushState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Rush State");
+
+        jonathanMain.animator.SetBool("Moving", true);
+        jonathanMain.animator.SetBool("Running", true);
+
         jonathanMain.jonathanMovement.SetToRun();
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);
     }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NoiseSystem
   intensity: 30
   radius: 20
-  decayTime: 0.5
+  decayTime: 0.2
   soundType: 0
