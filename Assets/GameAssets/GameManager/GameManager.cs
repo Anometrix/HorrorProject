@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool isPowerOn { get; private set;  } // Power state variable
     private int FPS = 60;
     public bool isDead { get; private set; }
+    public bool gameCompleted { get; private set; } = false;
 
     public bool greenKeyCardCollected { get; private set; }
     public bool redKeyCardCollected { get; private set; }
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        #region Key Card and Task Management
         if (greenKeyCardCollected && redKeyCardCollected && !MasterKeyCardCollected)
         {
             task1.SetActive(false);
@@ -73,17 +75,19 @@ public class GameManager : MonoBehaviour
             task2.SetActive(false);
             task3.SetActive(true);
         }
-
+        #endregion
+        #region Power State Management
         if (isPowerOn)
         {
             genEnabled.SetActive(true);
             genDisabled.SetActive(false);
         }
-         else
+        else
         {
             genEnabled.SetActive(false);
             genDisabled.SetActive(true);
         }
+        #endregion
     }
     #endregion
     public bool PowerEnabler() 
@@ -138,4 +142,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(screamClip.length + 1f); // Wait for the scream sound to finish playing
         screamSource.Stop(); // Stop the scream sound
     }
+    public void levelCompleted()
+    {
+        Time.timeScale = 0f; // Pause the game by setting time scale to 0
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        gameCompleted = true;
+        musicSource.Stop();
+    }
 }
+
