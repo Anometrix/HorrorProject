@@ -9,7 +9,7 @@ public class JonathanMain : MonoBehaviour
     [Header("Components")]
     public StateMachine stateMachine { get; private set; }
     public JonathanMovement jonathanMovement { get; private set; }
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     // States
     public JonathanIdleState idleState;
@@ -18,10 +18,10 @@ public class JonathanMain : MonoBehaviour
     public JonathanRushState rushState;
 
     [Header("Regular Variables")]
-    [Range(0f, 25f)]
+    [Range(4f, 25f)]
     [Tooltip("The minimum sound required for Jonathan to investigate noise.")]
     public float withinNoiseThreshold = 15f;
-    [Range(26f, 50f)]
+    [Range(16f, 30f)]
     [Tooltip("The minimum sound required for Jonathan to rush towards noise.")]
     public float pastNoiseThreshold = 26f;
     private float soundCheckTimer = 0f;
@@ -34,7 +34,6 @@ public class JonathanMain : MonoBehaviour
     {
         stateMachine = new StateMachine();
         jonathanMovement = GetComponent<JonathanMovement>();
-        animator = GetComponent<Animator>();
 
         idleState = new JonathanIdleState(this, stateMachine, animator, "Idle");
         patrolState = new JonathanPatrolState(this, stateMachine, animator, "Walk");
@@ -44,6 +43,9 @@ public class JonathanMain : MonoBehaviour
     void Start()
     {
         stateMachine.InitializeStateMachine(patrolState);
+
+        animator.SetBool("Moving", true);
+        animator.SetBool("Running", false);
     }
     #endregion
 
@@ -52,6 +54,7 @@ public class JonathanMain : MonoBehaviour
     {
         stateMachine.currentState.LogicUpdate();
 
+        Debug.Log($"State: {stateMachine.currentState.GetType().Name} | Intensity: {currentSoundHeard.heardIntensity}");
         if (soundCheckTimer <= 0f)
         {
             soundCheckTimer = 0.5f; // Check for sounds every 0.5 seconds
@@ -68,4 +71,12 @@ public class JonathanMain : MonoBehaviour
         stateMachine.currentState.PhysicsUpdate();
     }
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.PlayerDeath();
+        }
+    }
 }

@@ -8,17 +8,19 @@ public class JonathanMovement : MonoBehaviour
     [Header("Components")]
     private Rigidbody rb;
     private NavMeshAgent agent;
+    [SerializeField] private Transform[] firstSightPoint;
     [SerializeField] private Transform[] patrolPoints;
 
     [Header("Settings/Regular Variables")]
-    [SerializeField] private float patrolWaitTime = 2f;
-    [SerializeField] private float stoppingDistance = 0.5f;
+    [SerializeField] private float patrolWaitTime;
+    [SerializeField] private float stoppingDistance;
     private int currentPatrolIndex;
     private bool isWaiting;
+    private bool playerhasSeenEnemy; // This is for when Jonathan first appears
 
     // Constants
     private const float walkSpeed = 5f; // Walk Speed here - adjust as needed
-    private const float runSpeed = 10f; // Run Speed here - adjust as needed
+    private const float runSpeed = 20f; // Run Speed here - adjust as needed
     #endregion
 
     private void Awake()
@@ -58,10 +60,21 @@ public class JonathanMovement : MonoBehaviour
     private void MoveToNextPatrolPoint() 
     {
         agent.isStopped = false;
-        if (patrolPoints.Length == 0) return; // No patrol points = do nothing
 
-        agent.SetDestination(patrolPoints[currentPatrolIndex].position);
-        currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Increment and loop patrol index
+        if (playerhasSeenEnemy == false)
+        {
+            if (firstSightPoint.Length == 0) return; // No patrol points = do nothing
+
+            agent.SetDestination(firstSightPoint[currentPatrolIndex].position);
+            playerhasSeenEnemy = true;
+        }
+        else
+        {
+            if (patrolPoints.Length == 0) return; // No patrol points = do nothing
+
+            agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+            currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // Increment and loop patrol index
+        }
     }
     #endregion
 

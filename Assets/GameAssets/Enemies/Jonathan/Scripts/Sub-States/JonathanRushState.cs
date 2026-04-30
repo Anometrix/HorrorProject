@@ -22,7 +22,7 @@ public class JonathanRushState : JonathanState
         #endregion
 
         // Check for new noise within and above freshold and update target position if necessary
-        if (jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
+        if (jonathanMain.currentSoundHeard.isValid && jonathanMain.currentSoundHeard.heardIntensity >= jonathanMain.pastNoiseThreshold)
         {
             if (jonathanMain.currentSoundHeard.heardIntensity > jonathanMain.lockedSound.heardIntensity + 2f)
             {
@@ -43,6 +43,10 @@ public class JonathanRushState : JonathanState
     {
         base.Enter();
         Debug.Log("Entered Rush State");
+
+        jonathanMain.animator.SetBool("Moving", true);
+        jonathanMain.animator.SetBool("Running", true);
+
         jonathanMain.jonathanMovement.SetToRun();
         jonathanMain.jonathanMovement.MoveTowardsTarget(jonathanMain.lockedSound.position);
     }
